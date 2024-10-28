@@ -1,10 +1,10 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://darinkishore.com", // If you don't have a domain yet, use "https://darinkishore.github.io" or similar
+  website: "https://darinkiroshe.com", // replace with your website URL
   author: "Darin Kishore",
   authorShort: "Darin",
-  desc: "Personal website and blog of Darin Kishore - Thoughts on technology, programming, and personal projects",
+  desc: "Personal blog about AI, robotics, and software engineering",
   title: "Darin Kishore",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
@@ -21,10 +21,10 @@ export const LOCALE = {
 } as const;
 
 export const LOGO_IMAGE = {
-  enable: true,
-  svg: true, // set to false if using PNG
-  width: 216,
-  height: 46,
+  enable: false, // set to false to use text logo instead of image
+  svg: false,
+  width: 75,
+  height: 35,
 };
 
 // Keep only the social media you actually use

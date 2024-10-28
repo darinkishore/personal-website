@@ -5,18 +5,19 @@ title: "About Me"
 
 Hello! I'm Darin Kishore.
 
-I'm a software engineer and researcher passionate about artificial intelligence, robotics, and building innovative solutions. Through this website, I share my thoughts, experiences, and learnings about technology, programming, and the intersection of AI and robotics.
+I'm a student at Emory, currently finishing my undergrad and working on my masters. I do research at Emory NLP.
 
 ## What I Do
 
-I work on developing intelligent systems and exploring the frontiers of AI and robotics. My work focuses on creating solutions that can make a meaningful impact in the real world.
+Right now, I try and make things easier for myself. I like seeing how much of my own cognitive load I can shift to machines.
 
 ## My Interests
 
-- Artificial Intelligence & Machine Learning
-- Robotics & Control Systems
-- Software Engineering & System Design
-- Open Source Development
+- Artificial Intelligence
+- Biking
+- Systems Design
+
+
 
 ## Get in Touch
 
