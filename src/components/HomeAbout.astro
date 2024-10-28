@@ -1,0 +1,107 @@
+---
+import { SITE } from "@config";
+import Socials from "./Socials.astro";
+
+const { author, authorShort } = SITE;
+---
+
+<section class="home-about">
+  <div class="content-wrapper">
+    <h1 class="name-title">
+      <span class="text-skin-base">Hi, I'm</span> {authorShort}!
+    </h1>
+    
+    <div class="bio-text">
+      <p class="lead text-skin-base">
+        I like using AI to solve problems we couldn't solve before.
+      </p>
+      
+      <p>
+        On this site, you'll find my thoughts on papers, some project breakdowns, and other things I'm interested in.
+      </p>
+
+      <p class="about-link">
+        <a href="/about" class="text-skin-accent hover:text-skin-accent-emphasis transition-colors">
+          Learn more about my work and projects →
+        </a>
+      </p>
+    </div>
+
+    <div class="recent-posts">
+      <h2 class="section-title text-skin-base">Recent Posts</h2>
+      <slot />
+    </div>
+
+    <div class="connect-section">
+      <div class="connect-wrapper">
+        <p class="connect-text text-skin-base">Let's connect:</p>
+        <Socials centered={false} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-about {
+    @apply py-16 px-4;
+    background: linear-gradient(to bottom, transparent, var(--color-card) 100%);
+  }
+
+  .content-wrapper {
+    @apply max-w-3xl mx-auto;
+  }
+
+  .name-title {
+    @apply text-5xl font-bold mb-8 text-skin-accent;
+    font-family: "system-ui", sans-serif;
+  }
+
+  .bio-text {
+    @apply space-y-6 text-lg;
+    font-family: "system-ui", sans-serif;
+  }
+
+  .lead {
+    @apply text-xl font-medium;  /* Removed text-skin-accent */
+  }
+
+  .about-link {
+    @apply text-base italic;
+  }
+
+  .recent-posts {
+    @apply mt-12 pt-8;
+    border-top: 1px solid rgba(var(--color-text-base), 0.1);
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold tracking-wide mb-4;
+  }
+
+  .connect-section {
+    @apply mt-12 pt-8;
+    border-top: 1px solid rgba(var(--color-text-base), 0.1);
+  }
+
+  .connect-wrapper {
+    @apply flex items-center gap-4;
+  }
+
+  .connect-text {
+    @apply text-lg font-medium whitespace-nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .name-title {
+      @apply text-4xl;
+    }
+    
+    .bio-text {
+      @apply text-base;
+    }
+    
+    .lead {
+      @apply text-lg;
+    }
+  }
+</style>

@@ -1,36 +1,23 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "About Me"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+Hello! I'm Darin Kishore.
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
+I'm a software engineer and researcher passionate about artificial intelligence, robotics, and building innovative solutions. Through this website, I share my thoughts, experiences, and learnings about technology, programming, and the intersection of AI and robotics.
 
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+## What I Do
 
-<div>
-  <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
-</div>
+I work on developing intelligent systems and exploring the frontiers of AI and robotics. My work focuses on creating solutions that can make a meaningful impact in the real world.
 
-## Tech Stack
+## My Interests
 
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
+- Artificial Intelligence & Machine Learning
+- Robotics & Control Systems
+- Software Engineering & System Design
+- Open Source Development
 
-## Features
+## Get in Touch
 
-Here are certain features of this site.
-
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
-
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+Feel free to reach out to me through any of the social links below. I'm always open to interesting conversations and collaborations!
