@@ -22,9 +22,6 @@ This all started because I took liberal arts classes as a "break" from technical
 
 So I started automating everything I had to do more than twice. Each friction point became a new AI tool. Research assistant here, documentation RAG pipeline there. They worked, but they were isolated solutions.
 
-> [!info] some things i did
-> scraping and formatting documentation, optimizing korean vocab memorization, a custom annotation UI with AI assistance for quickly labeling important data, RAG over canvas with PDF processing pipelines.
-
 It's been really nice because it let me do what I love while not failing out of my classes.
 
 A week ago, Anthropic dropped the Model Context Protocol (MCP), and suddenly there's a standard way to build and connect all these tools. After two years of building AI tools, I've learned that context management and tool design matter more than anything else—and MCP finally gives us a standardized way to get both right.
