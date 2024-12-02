@@ -19,12 +19,12 @@ This all started because I took liberal arts classes as a "break" from technical
 
 So I started automating everything I had to do more than twice. Each friction point became a new AI tool. Research assistant here, documentation RAG pipeline there. They worked, but they were isolated solutions.
 
-It's been really nice because it let me do what I love while not failing out of my classes.
+It's been an amazing respite because it let me do what I love without failing out of my classes.
 
-A week ago, Anthropic dropped the Model Context Protocol (MCP), and suddenly there's a standard way to build and connect all these tools. After two years of building AI tools, I've learned that context management and tool design matter more than anything else—and MCP finally gives us a standardized way to get both right.
+A week ago, Anthropic dropped the Model Context Protocol (MCP), and now there's a standard way to build and connect all these tools. After two years of building AI tools, I've learned that context management and tool design matter more than anything else—and MCP finally gives us a standardized way to get both right.
 
 
-# MCP: A New Standard for AI Integration
+## MCP: A New Standard for AI Integration
 
 The Model Context Protocol (MCP) fundamentally changes how we can build AI tools. At its core, it provides:
 
@@ -32,14 +32,13 @@ The Model Context Protocol (MCP) fundamentally changes how we can build AI tools
 
 2. **Tools** that let LLMs take actions through well-defined interfaces. Each tool has clear inputs, outputs, and error handling, making it easier to build reliable AI interactions.
 
-
 What makes this exciting isn't just the individual capabilities - it's that it's an open, standard protocol. This means:
 - Tools built by different developers can work together seamlessly
 - Best practices can emerge and be shared across the community
 - Integration patterns become consistent and reliable
 - Many LLM applications will be able to connect to any MCP server to provide arbitrary functionality.
 
-Instead of everyone building their own custom integration patterns, we get a common language for AI interactions. MCP greatly reduces wasted effort. My scattered collection of tools can now work together in a coherent system, and more importantly, they could work with tools built by others.
+Instead of everyone building their own custom integration patterns, we get a common language for AI interactions. **MCP greatly reduces wasted effort.** My scattered collection of tools can now work together in a coherent system, and more importantly, they could work with tools built by others.
 
 
 ## Building tools for LLMs
@@ -51,7 +50,7 @@ Over two years of building LLM tools, I've found one principle holds consistentl
 
 Think about what an LLM needs to effectively help with research. If you just ask it to "find papers about wellness," you're missing crucial context. What's the purpose of the research? What kind of analysis are you doing? What theoretical framework are you working within? Without this context, you'll get generic results that might be tangentially relevant but don't actually advance your work.
 
-This led me to design around a simple pattern: pair every query with its purpose. Not just what you're looking for, but why you're looking for it. Here's what this looks like in practice:
+This led me to design around a simple pattern: **pair every query with its purpose.** Not just what you're looking for, but why you're looking for it. Here's what this looks like in practice:
 
 ```python
 # note: this is only useful because it uses Exa,
@@ -67,46 +66,58 @@ QueryPurpose(
         ExaQuery(
             text='Here is a scholarly analysis of how luxury brands commodify spiritual practices:',
             category='research paper',
-        )
-    ]
-)
+        ),
+        ExaQuery(
+            text='Here is research on class dynamics in contemporary wellness culture:',
+            category='research paper',
+        ),
+        ExaQuery(
+            text="Here is a scholarly analysis of the wellness industry's impact on mental health:",
+            category='research paper',
+        ),
+    ],
+),
+# category can be  'company', 'research paper', 'news', 'linkedin profile', 'github', 'tweet', 'movie', 'song', 'personal site', 'pdf'
+
+# also can get live/recent results as well for time-sensitive queries
 ```
 
+---
 
-When you're brainstorming with Claude about a paper outline, you've discussed your main arguments, potential counterpoints, and where you need more support. When you need to find sources, all of that conversation becomes valuable context.
+
+When you're brainstorming with Claude about a paper outline, you've come to a shared consensus about what you want to say, but you have to go through and do the difficult, time-consuming work of finding, analyzing, and understanding the data and literature to understand how your ideas interface with them. This conversation, where you go back the forth with the model as you flesh out your ideas, becomes valuable context for finding **exactly** the type of information you need.
 
 The `(purpose, query)` pattern lets you capture this context precisely. Maybe you're looking for sources to:
 - Back up your argument about wellness commodification
 - Find counterarguments you haven't considered
 - Explore how other scholars have approached similar analyses
 
-Each search knows not just what you're looking for, but why you're looking for it in the context of your broader conversation and goals. This context awareness then informs how the tool approaches the search - which search strategies to use, how to evaluate results, what kind of sources to prioritize.
+Every time you search for something, you're not just telling the system what to look for—you're telling it why you need it in the context of your bigger project. This transforms every interaction from an isolated query into part of an ongoing conversation about your goals and needs.
 
-It's about maintaining coherent context through different levels of interaction - from high-level project planning all the way down to individual searches. Each layer understands its role in your broader work.
+When combined with Chain of Thought prompting, this understanding becomes even more powerful. Instead of just following instructions, the model actively thinks about the best way to help you—choosing better search strategies and finding more relevant sources. Because it knows both what you need and why you need it, it can also evaluate the results more intelligently, making sure you get exactly what you're looking for.
 
-This context awareness becomes even more powerful when combined with Chain of Thought prompting. The model doesn't just passively receive context - it can actively reason about how to best serve your needs at each level.
+---
 
-This explicit reasoning helps the model make better decisions about how to use the tools. When Claude understands both what you need and why you need it, it can choose more appropriate search strategies and prioritize different kinds of results. Because the purpose and the exact query is specified beforehand as well, after the results are returned, it alows the model to evaluate findings more precisely.
+When building AI tools, it's easy to forget that your end user is actually the model itself. This means small design choices should focus on what makes sense to LLMs, not humans:
+- XML-style outputs instead of human-readable formats
+- Short, memorable IDs like "red-fish" instead of proper UUIDs
+- Consistent patterns that match how models build internal representations
 
-Small details in tool design make a big difference in how well LLMs can use them. For example:
-- Using XML-style outputs gives clear structure
-- Short semantic IDs (like "big-gopher" or "red-fish") are easier for models to track than UUIDs or long identifiers
-- Consistent patterns help models build reliable mental models of tool behavior
+This becomes crucial when handling complex operations like codebase searches or package installations. Instead of dumping raw output, take time to structure what the model actually needs to see - relevant results, meaningful error messages, and clear success indicators. Building in this kind of thoughtful structure makes your tools more reliable and easier for models to use effectively.
 
 But good design is just the start. The real magic happens when you let your tools improve through use.
 
-
 ### Building Tools That Learn
+
 
 Here's something cool: you can build AI tools that get better through use. Not through complex retraining pipelines or massive datasets, but through simple, structured feedback from the models using them.
 
 This is where DSPy comes in. DSPy provides a way to build modular AI systems that can optimize themselves. Instead of tinkering with prompts or managing complex training pipelines, DSPy lets you write clear Python code that describes what you want your LLM to do, then helps you make it better. By turning your interactions with the tool into training data, you make continuous improvement practically automatic.
 
-For instance, my research pipeline is built from two DSPy modules:
+
+For instance, my research assistant tool is built from these DSPy building blocks:
 
 ```python
-# simplified version of the PurposeDrivenQuery module
-# `queries` desc has examples + guidelines on creating good exa queries
 class PurposeDrivenQuery(dspy.Signature):
     """Generate optimized search queries based on purpose and question."""
 
@@ -117,25 +128,31 @@ class PurposeDrivenQuery(dspy.Signature):
         desc='what do you want to know, more specifically?'
     )
     queries: list[ExaQuery] = dspy.OutputField(
-        desc='optimized queries following best practices'
+        desc='optimized queries following best practices (omitted)'
     )
 
 class ExtractContent(dspy.Signature):
-    """
-    Extract information from search results to get the best results.
-    Only keep search results that are relevant to the original query.
-    """
+    """Extract and summarize relevant information from search results."""
 
-    original_query: QueryRequest = dspy.InputField( # just a purpose, query
-        desc='The query that generated the search results, providing context for determining relevance.'
+    original_query: QueryRequest = dspy.InputField(
+        desc='The query context for determining relevance'
     )
-    content: SearchResultItem = dspy.InputField(desc='the raw search result')
-
+    content: SearchResultItem = dspy.InputField(
+        desc='the raw search result'
+    )
     cleaned_response: Union[SummarizedContent, None] = dspy.OutputField(
-        desc='the cleaned search result'
+        desc='the cleaned and summarized result, `None` if no relevant content'
     )
-# both response pydantic types are specific about whats expected
 
+```
+
+These components become powerful when combined with DSPy's Chain of Thought capabilities. Instead of writing complex prompts like:
+
+> "Think step by step about the search query. Show your reasoning in <thinking> tags. Consider the purpose and broader context first. Then generate 3-5 search queries formatted as JSON objects like `{"text": "...", "category": "..."}`. Make sure to include both general and specific queries. Format your final response as a list of queries, each on a new line starting with `-`. Remember to end each query with a colon and use natural language. If using categories, always include a non-category version too..."
+
+We get much more than just structured reasoning. DSPy lets us specify our exact requirements in clean, maintainable Python code - no more massive `prompts.py` files or hunting through strings to update our pipelines. Just simple classes that clearly define what we want:
+
+```python
 query_generator = dspy.ChainOfThought(PurposeDrivenQuery)
 content_cleaner = dspy.ChainOfThought(ExtractContent)
 
@@ -147,12 +164,15 @@ for query in result.queries:
 ```
 
 
-This declarative style lets us focus on describing what we want the model to do. When processing a request about wellness commodification, the model might think:
-1. Prioritize academic critiques over supporting literature
-2. Look for papers from different theoretical frameworks
-3. Focus on methodological challenges to similar analyses
+Because these components understand their purpose through Chain of Thought, they make intelligent decisions about how to handle each request. When working with our wellness commodification example, the query generator naturally:
 
-Not included in the code, but worth noting: for the Exa query generation, I also provided examples and a prompting guide manually. While DSPy will infer this with a well defined metric and 10-100 examples, I had impactful examples from doing my task by hand already, so I passed them in.
+- Prioritizes academic critiques over supporting literature
+- Looks for papers from different theoretical frameworks
+- Focuses on methodological challenges to similar analyses
+
+While DSPy can learn these patterns from scratch with enough examples (usually 10-100), I found that feeding in high-quality examples from my manual research process made the tools immediately more effective.
+
+
 
 The improvement pattern is straightforward. Every tool call should be paired with feedback:
 
