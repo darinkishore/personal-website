@@ -206,4 +206,4 @@ The patterns are simple:
 
 Between MCP's standardization and composability, DSPy's optimization capabilities, and tools like Braintrust making improvement dead simple, building powerful AI tools is now accessible to anyone willing to learn.
 
-@dronathon[https://x.com/dronathon] on X - if you build something cool with these patterns, let me know! I'd love to see what you create.
+I'm [@dronathon](https://x.com/dronathon) on X - if you build something cool with these patterns, let me know! I'd love to see what you create.
