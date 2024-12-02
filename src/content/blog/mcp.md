@@ -11,8 +11,6 @@ tags:
 description: Lessons learned from building AI tools and how the Model Context Protocol (MCP) is cool.
 ---
 
-# MCP
-
 
 I've been building a lot this semester. Terrible at shipping, trying to change that. This post is my first attempt - sharing what I've learned about building better AI tools, sparked by Anthropic's new Model Context Protocol.
 
@@ -26,7 +24,7 @@ It's been really nice because it let me do what I love while not failing out of 
 A week ago, Anthropic dropped the Model Context Protocol (MCP), and suddenly there's a standard way to build and connect all these tools. After two years of building AI tools, I've learned that context management and tool design matter more than anything else—and MCP finally gives us a standardized way to get both right.
 
 
-## MCP: A New Standard for AI Integration
+# MCP: A New Standard for AI Integration
 
 The Model Context Protocol (MCP) fundamentally changes how we can build AI tools. At its core, it provides:
 
