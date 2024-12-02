@@ -172,14 +172,12 @@ Because these components understand their purpose through Chain of Thought, they
 
 While DSPy can learn these patterns from scratch with enough examples (usually 10-100), I found that feeding in high-quality examples from my manual research process made the tools immediately more effective.
 
-
-
-The improvement pattern is straightforward. Every tool call should be paired with feedback:
+But the real magic happens when these tools learn from every scenario they're used in. Whether you're searching documentation, installing packages, or finding research papers, each interaction is an opportunity for improvement. And here's the key: Claude itself provides the feedback, understanding the context of why the tool was called and whether its output actually helped:
 
 ```python
 # Tool usage
 result = search(purpose="Finding counterarguments to wellness commodification", query="...")
-# note: tool desc will ask claude to provide feedback on the result
+# note: tool desc asks claude to provide feedback on the result
 
 # result goes into conversation,
 # claude provides feedback
@@ -194,28 +192,51 @@ feedback(
 
 This immediate feedback creates binary signal for improvement - was the output useful for the task or not? While getting feedback right after tool use means we might miss longer-term utility, this tradeoff gives us consistent, usable data from natural tool usage.
 
-Braintrust makes this pattern practical by solving the logging challenge elegantly. Every tool call, every piece of feedback, every interaction gets automatically traced and stored in a format that's ready for optimization. Their key insight? Log straight to evals - making it trivial to turn your tool's actual usage into training data for DSPy.
+Braintrust makes this pattern practical by solving the logging challenge elegantly. Every interaction gets automatically traced and stored, ready for optimization. The result is a natural improvement loop: your tool gets used, Claude provides feedback, Braintrust captures the data, and DSPy optimizes your tool's performance. You can set it and forget it—check in on your tools after either you or your agents use them, evaluate, compile, optimize for quality, then do it again!
 
-The result is a natural improvement loop: your tool gets used, models provide feedback, Braintrust captures the interactions, and DSPy uses this data to make your tool better at its specific tasks. You can set it and forget it—check in on your tools after either you or your agents use them, evaluate, compile, optimize for quality, then do it again!
 
-Pro tip: Start simple. Before diving into DSPy optimization, I'd recommend:
-1. Start with basic prompt engineering in your chat client
-2. Manually iterate until you get exactly the outputs you want
-3. Use these successful examples in your DSPy modules
 
-Auto-optimization needs a clear signal to work towards. If you can define metrics for your task, great! But many tasks are hard to quantify. While you can use an LLM as a judge, this requires careful thought about evaluation criteria and rubrics.
+## Getting Started
 
-DSPy's simple signatures often work beautifully out of the box - something like "query, purpose -> list_of_exa_queries" might be all you need. But for more complex tasks, here's a practical shortcut: Use Anthropic's console to bootstrap your prompt from scratch, then use their 0-shot prompt optimizer. This often gets you 80% of the way there, especially for straightforward tasks. Even better, their prompt format matches DSPy's input-output structure, making it easy to transfer your work.
 
-If DSPy still isn't giving you the results you want, understand what's actually going wrong: Does the model just not know about your task? Are you underspecifying what you actually want?
+Understanding how DSPy works is crucial: your modules are ultimately transformed into prompts under the hood. This means:
 
-focus on the most critical stage in your pipeline. Remember: your modules are ultimately transformed into string prompts under the hood. The docstrings and descriptions aren't just documentation—they're telling DSPy exactly what you're trying to achieve at each step.
+- Docstrings and descriptions aren't just documentation—they're telling DSPy exactly what you want
+- Clear input/output specifications often work beautifully. You can even express them inline with `dspy.ChainOfThought("query, purpose -> list_of_exa_queries")`
+- These clean interfaces are what make optimization possible later - DSPy knows exactly what inputs and outputs to work with. Even better, you typically only need examples for your complete pipeline, not each individual component. DSPy handles the rest.
+
+Here's a practical approach to building your first tools:
+
+1. **Start Simple**
+   - Use inline DSPy signatures if your task is simple enough.
+   - If not, begin with basic prompt engineering in your chat client. Use Anthropics, it makes iterating and getting to okay quality much faster than OpenAI's playground. This guides you towards a clear, structured way of handling prompts that matches DSPy's abstractions surprisingly well.
+   - This prompt engineering stage also helps you understand if an LLM can do the thing you want it to in just the one call. Is your scope too big? Will you need multiple calls?
+   - Manually iterate until you get exactly the outputs you want
+   - Use these successful examples in your DSPy modules (The library still needs a cleaner way of just putting examples into prompts, which I think might be possible to handle with a custom adapter)
+
+2. **Build Incrementally**
+   - Start with clear input/output specifications
+   - Let DSPy's structure guide your tool design
+   - Focus on getting the interfaces right - that's what enables optimization later
+   - Keep your scope small and composable - chain simple tools rather than building complex ones
+
+3. **Optimize Thoughtfully**
+   - Focus on your critical pipeline stages
+   - Keep your docstrings and descriptions precise—they're core to DSPy's understanding
+   - When troubleshooting:
+      - **READ YOUR LOGS.** Seriously.
+      - **VISUALIZE YOUR PIPELINE.** Use tools like Arize Phoenix (an open-source OTEL provider) to see what's happening at each stage
+      - Identify exactly where things break down. Focus on clarity: Does the model understand your task? Are your specifications clear?
+
+The beauty of this approach? You can set it and forget it. Whether you or your agents are using the tools, they'll keep getting better through natural use.
+
 
 
 ## What's Next?
 
 
-MCP gives us standard building blocks for AI tools. I used it to cut my paper-writing time from 6 hours to 1 hour, but that's just scratching the surface. The real power is in how it lets us combine tools and improve them through use.
+MCP gives us standard building blocks for AI tools. I cut my paper-writing time from 6 hours to 1 hour this semester, but that improvement took lots of manual iteration at first - copying queries, running searches, pasting results back to Claude. Now with MCP? That entire workflow is just one seamless step. And this example is just scratching the surface - the real power is in how MCP lets different tools work together. The power of each individual tool multiplies when they can improve themselves through use, automatically updating based on feedback from actual usage.
+
 
 The patterns are simple:
 - Design tools that match how LLMs think
