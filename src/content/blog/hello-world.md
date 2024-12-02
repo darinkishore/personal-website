@@ -3,7 +3,7 @@ author: Darin Kishore
 pubDatetime: 2024-10-28T15:22:00Z
 title: Hello!
 slug: welcome
-featured: true
+featured: false
 draft: false
 tags:
   - thoughts

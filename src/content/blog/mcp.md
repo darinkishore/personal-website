@@ -7,8 +7,7 @@ featured: true
 draft: false
 tags:
   - ai
-  - tools
-  - development
+  - mcp
 description: Lessons learned from building AI tools and how the Model Context Protocol (MCP) is cool.
 ---
 
@@ -57,6 +56,8 @@ Think about what an LLM needs to effectively help with research. If you just ask
 This led me to design around a simple pattern: pair every query with its purpose. Not just what you're looking for, but why you're looking for it. Here's what this looks like in practice:
 
 ```python
+# note: this is only useful because it uses Exa,
+# an embeddings-based web search platform
 QueryPurpose(
     purpose='To build a theoretical framework for analyzing wellness industry trends.',
     question='Academic analysis of commodification in the wellness industry',
@@ -125,19 +126,9 @@ class ExtractContent(dspy.Signature):
     """
     Extract information from search results to get the best results.
     Only keep search results that are relevant to the original query.
-
-    For each result, return:
-    1. The ID of the result
-    2. A relevance summary: why it's relevant to the original query (<10 words, be straightforward and concise, say something distinct from the title)
-    3. A hyper-dense summary of the content.
-        - Use the original content, but tailor it for our query.
-        - Be as dense as possible. Don't miss anything not contained in the query.
-        - Ideally, you'd return basically the exact content but with words/phrases omitted to focus on answering the reason behind the query and the question itself.
-        - If the content is <1000 words or < 5 paragraphs, return it in full.
-    If the document is not relevant, return None.
     """
 
-    original_query: QueryRequest = dspy.InputField(
+    original_query: QueryRequest = dspy.InputField( # just a purpose, query
         desc='The query that generated the search results, providing context for determining relevance.'
     )
     content: SearchResultItem = dspy.InputField(desc='the raw search result')
@@ -145,7 +136,7 @@ class ExtractContent(dspy.Signature):
     cleaned_response: Union[SummarizedContent, None] = dspy.OutputField(
         desc='the cleaned search result'
     )
-
+# both response pydantic types are specific about whats expected
 
 query_generator = dspy.ChainOfThought(PurposeDrivenQuery)
 content_cleaner = dspy.ChainOfThought(ExtractContent)
@@ -163,7 +154,7 @@ This declarative style lets us focus on describing what we want the model to do.
 2. Look for papers from different theoretical frameworks
 3. Focus on methodological challenges to similar analyses
 
-Not included in the code, but worth noting: for the Exa query generation, I also provided examples and a prompting guide manually. While DSPy usually handles this automatically, I had valuable examples from doing my task by hand, so I passed them in.
+Not included in the code, but worth noting: for the Exa query generation, I also provided examples and a prompting guide manually. While DSPy will infer this with a well defined metric and 10-100 examples, I had impactful examples from doing my task by hand already, so I passed them in.
 
 The improvement pattern is straightforward. Every tool call should be paired with feedback:
 
@@ -198,7 +189,9 @@ Auto-optimization needs a clear signal to work towards. If you can define metric
 
 DSPy's simple signatures often work beautifully out of the box - something like "query, purpose -> list_of_exa_queries" might be all you need. But for more complex tasks, here's a practical shortcut: Use Anthropic's console to bootstrap your prompt from scratch, then use their 0-shot prompt optimizer. This often gets you 80% of the way there, especially for straightforward tasks. Even better, their prompt format matches DSPy's input-output structure, making it easy to transfer your work.
 
-If DSPy still isn't giving you the results you want, focus on the most critical stage in your pipeline. Remember: your modules are ultimately transformed into string prompts under the hood. The docstrings and descriptions aren't just documentation—they're telling DSPy exactly what you're trying to achieve at each step.
+If DSPy still isn't giving you the results you want, understand what's actually going wrong: Does the model just not know about your task? Are you underspecifying what you actually want?
+
+focus on the most critical stage in your pipeline. Remember: your modules are ultimately transformed into string prompts under the hood. The docstrings and descriptions aren't just documentation—they're telling DSPy exactly what you're trying to achieve at each step.
 
 
 ## What's Next?
