@@ -23,6 +23,9 @@ importers:
       fuse.js:
         specifier: ^7.0.0
         version: 7.0.0
+      insights-js:
+        specifier: ^1.2.11
+        version: 1.2.11
       lodash.kebabcase:
         specifier: ^4.1.1
         version: 4.1.1
@@ -1606,6 +1609,9 @@ packages:
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
+
+  insights-js@1.2.11:
+    resolution: {integrity: sha512-rmNnMM2LnOmKVJAZOMmeZ6GYMm98ztGMC4nA7KUOTBoPBpce8uUx++ZPJDnU02ORH6lCzBCy0AOLwsC/v1dp1Q==}
 
   is-arrayish@0.3.2:
     resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
@@ -4542,6 +4548,8 @@ snapshots:
   import-meta-resolve@4.1.0: {}
 
   imurmurhash@0.1.4: {}
+
+  insights-js@1.2.11: {}
 
   is-arrayish@0.3.2:
     optional: true
