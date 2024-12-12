@@ -247,4 +247,6 @@ Between MCP's standardization and composability, DSPy's optimization capabilitie
 
 I'm [@dronathon](https://x.com/dronathon) on X - if you build something cool with these patterns, let me know! I'd love to see what you create.
 
-Code coming soon! Still WIP because I'm not happy about latency, have to run git-filter-branch, and it's a big ol mess.
+code: https://github.com/darinkishore/research_mcp/tree/main
+
+warning: little hard to follow
