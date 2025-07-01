@@ -290,7 +290,7 @@ oh god there is so much here
 ie: maintaining LLM systems is an incredibly difficult task that… only gets easier with time? But to create reliable LLM systems today, you need to decompose properly.
 
 look at this graph bro:
-![[CleanShot 2025-06-29 at 15.38.41@2x.png]]
+![Graph showing model capabilities over time](./CleanShot%202025-06-29%20at%2015.38.41@2x.png)
 
 
 To make the initial gains on any systems at the frontier of model capabilities, you need some human intuition rn. ok, say we want to make that superhuman. we loosen the constraints strategically. hm. not a good detour.
