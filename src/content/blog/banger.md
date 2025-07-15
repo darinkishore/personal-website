@@ -1,10 +1,10 @@
 ---
 author: Darin Kishore
-pubDatetime: 2025-07-15T00:00:00Z
+pubDatetime: 2025-07-21T00:00:00Z
 title: DSPy is to LLM Engineering What Rust is to Systems Programming
 slug: dspy-rust-llm-engineering
 featured: false
-draft: false
+draft: true
 tags:
   - ai
   - llm

@@ -12,104 +12,110 @@ tags:
 description: When AI capabilities become commoditized, taste and evaluation become the new competitive advantage.
 ---
 
-## Premise
+## Midjourney
 
-Assume, for a moment,
-- AI capabilities are still compounding exponentially
-- Frontier models continue to become publicly accessible within months of training
-- Competent generation is quickly becoming a commodity—cheap, ubiquitous, and undifferentiated. [^1]
+Why hasn't anyone—**literally anyone**—made a better Midjourney? Think about it. ChatGPT image generation, gemini's native image generation, replicate and their full suite of image generation models, BlackForestLabs, Stable Diffusion, **everyone** has tried.
 
-ie: assume trends continue.
+But you'll never get a committed Midjourney stan to switch. Why?
 
-When out‑of‑the‑box competence is “good enough,” differentiation (even against rapidly vertically‑integrating model providers) shifts to what remains scarce: **Taste**.
+For starters, the UX. It's unique—you type an idea, can be a couple of words, can be a paragraph with lots of specificity, and you're going to get four different images—each one a variation of that idea, each one beautiful and aesthetically pleasing in its own way. You can then choose an image, whichever one speaks to you, and do whatever you want to it! You can "remix" it, creating four different images from you to choose from, and keep going until you find the version of the idea that you love. When you're done and you've created the idea you really wanted, you can then "upscale" it—a final selection, increasing the picture's size, that says "I love this image so much I made it bigger".
+
+**This is why nobody's made a better Midjourney**.
+
+Think about it. What does Midjourney get from having users make all these choices? (_hint: what is MJ known for?_)
+
+They get **taste**.
+
+By having users make choices over and over again, they are able to effectively distill **what their users want**. Midjourney appeals to artists, creatives of all kinds, because their models have incredible aesthetic sensibilities—by using the preferences of their users, they can tune their models in the long run to get even closer to the exact thing that their users want.
+
+They also have a very clear idea of what that is—when a user upscales an image, it's the culmination of all the choices that they made. They can leverage this sequence of decisions and in the next iteration of the model, try and get the users to the image that they would want to upscale faster! It's a really nice, straightforward metric that correlates very precisely with user satisfaction. And the user experience they create brings them to this perfect distillation of taste!
+
+Before Midjourney releases a model, they have users judge between pairs of images for weeks leading up to the release. They take the raw image generation capabilities and refine them into something that is **exactly** what its users want for the new model. They have profiles, which let you pick between pairs of images to distill your own personal style and get even closer to getting the kinds of things you think are amazing on your first image generation.
+
+Midjourney's defensibility, even against more technically skilled (gpt-4o image generation was much more precise at getting exactly what people asked of it) competition, teaches us a key lesson of competing in the AI era—The AI-native companies that win, in the short *and* long run, are the companies that can operationalize taste, providing user experiences that are much more magical than any competition could ever be.
 
 ## What Remains Defensible?
 
-Anyone can call an LLM API and chain three prompts together. Anyone can create a really detailed, quickly leaked system prompt that drives user interactions.
+AI is getting more and more capable. Most models, given enough compute, are "good enough" to do most AI tasks in most AI products. And almost everyone has access to the smartest models.
 
-What they *cannot* copy overnight is **knowing what good looks like in your domain**.
+So how does anyone differentiate themselves?
 
-This is a much tricker question than it initially seems, because it's not enough to just know what's good—you have to truly, deeply understand what your customers want (including what they're not telling you, and would never tell you!), in every sense of the word.
+Anyone can call an LLM API. Anyone can chain three prompts together. What they _cannot_ copy overnight is **knowing what good looks like in your domain—and operationalizing it**.
 
-What's not defensible is operationalizing the **precise definition of what exactly you want**.
+This is trickier than it sounds because it's not enough to just know what's good—you have to truly, deeply understand what your customers want (including what they're not telling you, and would never tell you!), in every sense of the word.
 
-At first glace, this doesn't seem that important. Everyone knows what they want! But defining it and **operationalizing it** is tricky.
+By investing resources in _what is hard to copy_: **defining and verifying taste**.
 
 The bits that are hard to copy:
+
 - **Expert annotations**: data labeled by and conversations with experts (eg; for diagrams: senior architects) where you gain much more clarity about what exactly it is that you need to build.
 - **Evaluator Craftsmanship**: the combination of rigor, expertise, and great engineering that lets you evaluate your outputs
 - **Institutional Memory**: the implicit heuristics an organization develops by shipping many iterations and seeing what breaks in the real world
 - **Systems Architecture**: the design that allows each of these levers is used to its fullest potential. (there is often much, much, MUCH more that you can get out of your data than you might realize)
 
-Combining these, you create a compound asset that is worth much, much more than the sum of its parts: *Judgement Capital*—all the reusable assets that let you measure and enforce quality.
+Together, these form what I call **Judgment Capital**—a compound, reusable asset that lets you consistently measure and enforce quality in ways your competitors just can't copy.
 
 This grows slowly, resists leakage, and amortizes over every feature—actively used evaluators compound.
 
-## The Decomposition Law (weak title)
+## Measurement as Bottleneck
 
 Any complex pipeline is bottlenecked by its hardest atomic subtask.
 
-For an AI pipeline in a less-easy-to-verify-domain, that subtask is often *evaluating the output*.
+For an AI pipeline in a less-easy-to-verify-domain, that subtask is often _evaluating the output_.
 
-For example—say you created a validator with 80% accuracy with a simple "correctness" metric. This validator limits you to shipping only what you can prove meets that bar. There is room for LLM variance creating incredible results using your pipeline, but you will only stumble across "incredible"—never reliably distinguish, reproduce, or guarantee at scale. What you measure and the **reliability** with which you measure it is the critical bottleneck for improving your product—especially important for "ai-native" companies.
+For example—say you created a validator with 80% accuracy with a simple "correctness" metric. This validator limits you to shipping only what you can prove meets that bar. There is room for LLM variance creating incredible results using your pipeline, but you will only stumble across "incredible"—never reliably distinguish, reproduce, or guarantee at scale. - > What you choose to measure—and **how reliably** you measure it—directly caps how good your product can become.
 
 If all you check is correctness, or if you produce "good" or "good enough" outputs, you can never tell if you're producing "great", "incredible", or "superhuman" outputs—they all look the same.
 
 ## What You Measure, You Optimize
 
-Benchmarks are saturating faster and faster. The fastest way to improve performance on a given domain is to measure it—and you cannot improve on what you cannot measure![^2]
+Benchmarks are saturating faster and faster. The fastest way to improve performance on a given domain is to measure it—and you cannot improve on what you cannot measure!
 
 ![AI benchmarks showing rapid progress towards human performance across multiple domains](./ai-benchmarks-human-performance.png)
 
-
-
 Lately, LLMs have been exhibiting the marvelous property of autonomously being able to make numbers go up and tests go green—from CUDA kernels to tested software generation to DSPy's optimizers. Self improvement is possible when you constrain the domain well enough.
 
-Verification gets you a LOT of benefits—it constrains the domain of valid solutions, it defines what exactly it is you care about and how much, **and it lets LLMs autonomously work on your pipelines**. You don't have to figure out how to generate superhuman outputs. (obviously, you do lmao, but fr, it's much less difficult than figuring out how to evaluate them reliably (OR GATHER ENOUGH GROUND TRUTH THAT WORKS TOO)
+Reliable verification unlocks your ability to define, automate, and scale excellence. It allows your models to autonomously optimize—achieving outcomes you didn't even realize were possible.
 
 Both LLMs and LLM engineers are great at hillclimbing. By generating quality data and evaluating it properly, it becomes an OOM more straightforward to reach the Pareto Frontier at the intersection of the metrics you and your customers actually care about.
 
-## RL
+## RL & Optimization
 
 What do you get when you measure performance?
 
-A lot of different benefits, with different levels of work. At the lowest-effort end of the spectrum, it lets you tell if a given output is good, because you now have things you're looking for, and when there's a corner case, you can reason about it easier and document it for the future.
+At the lowest-effort end of the spectrum, **it lets you consistently tell if a given output is good**, because you now have things you're looking for, and when there's a corner case, you can reason about it easier and document it for the future.
 
-With a little work, a calibrated scorer, and representative inputs, it lets you do things like optimizing prompt pipelines to excel on any chosen metric (accuracy, latency, you name it).
+With a little work, a calibrated scorer, and representative inputs, it lets you do things like **optimizing prompt pipelines to excel on any chosen metric** (accuracy, latency, you name it).
 
-With a lot of work and a directionally correct scorer, it gives your model powerful reward signal when what you're looking for is so nuanced that even you cannot tell yourself. ex: in GRPO, the relative advantage in a group matter most—so even if you're not perfect, if instead of you, an LLM can judge, you can provide useful RL signal.
+With a lot of work and a directionally correct scorer, it **gives your model powerful reward signal** when what you're looking for is so nuanced that even you cannot tell yourself. ex: in GRPO, the relative advantage in a group matter most—so **even if you're not perfect**, if instead of you, an LLM can judge, you can provide useful RL signal.
 
-We seem to be on track in saturating progress in verifiable domains—this is almost a given now. The results of this hold when you're able to articulate what it is, exactly, you want, to a model that just wants to learn what it is you want! If you can define that coherently (minimal conflicts) and reliably, you provide excellent signal (in addition to the representative inputs you have collected for your data so far!) to train a model or an LLM system to become superhuman at your task.
+Both LLM pipelines and RL training pipelines are (or can be) trained to optimize towards clearly defined objectives. **The evaluators of these objectives are the what shapes the outcomes.**
 
-Both LLM pipelines and RL training pipelines are (or can be) trained to optimize towards clearly defined objectives. The evaluators of these objectives are the what shapes the outcomes.
+Say we wanted "superhuman" outcomes—these are very difficult to hand-design, because by definition, they exceed human capability.
 
-Say we wanted "superhuman" outcomes—these are very difficult to hand-design, because by definition, they exceed human capability. However, we **can** define, directionally, aspects of what that looks like, or at the very minimum, how to tell (or qualities that correlate with quality) in the pairwise case.
+However, we **can** define, directionally, aspects of what that looks like—or what separates worse outputs from better ones! This puts us squarely on the path towards superhuman on your domain :)
 
-This insight makes creating incredible AI products much more straightforward and lets you work on the most important parts.
+## A Brief Aside
 
----
+This is _a_ path to building **the best** product in your field.
 
-### A Brief Aside
+Remember the last time you were surprised and awed by this technology? This is the most magical stuff we've ever built. And roughly every 6 months, even as we get used to the pace of progress, you have a "holy fuck this shit is incredible" moment. You've experienced the ones I'm talking about!
 
-This is _a_ path to building **the best** product in your field. An unimaginably, fucking incredible thing, whatever it is you want to make—one that really takes advantage of **superhuman** intelligence on tap.
+It's possible to reliably replicate that feeling for your customers. You can create an unimaginably, fucking incredible thing, whatever it is you want to make—one that really takes advantage of **superhuman** intelligence on tap.
 
 Dude, the thing is, nobody knows what that will look like. Do you remember the best food you've ever had? Okay, so for me, they're mulitas, from this place called Tacos Maggie. And they're just so, so, so fucking incredibly good. Like you have not lived until you've tried their Tripas Mulitas. I search for better ones everywhere I go and all I find is dissapointment. Heaven on earth, this truck is an absolute pillar of the community.
 
-Much in the same way—it is very, very possible to create incredible experiences with the things it is you're building. Like what does the best doctor's visit you've ever had look like? What about a technical diagram that so effectively conveys what matters that people understand exactly the most important parts right away, and **everyone converges on the same ideas within moments of looking at it**?
+Much in the same way—it is very, very possible to create incredible experiences with the things it is you're building. Like what does the best doctor's visit you've ever had look like? What does  superhuman looks like at the things that your company is an expert on? Wouldn't you want to know?
 
-The point is, there are so many possibilities here. We really don't know what superhuman looks like at the things that your company is an expert on. Wouldn't you want to know?
-
----
-
-## But We're Good Enough
+## "Good Enough" Isn't Enough
 
 If you, by hand, can reliably tell what's good enough, then why invest in any infra or thinking about this problem at all?
 
-As soon as you scale or aim higher, the uncertainty about the performance of your pipeline makes improving it possible. It makes incredible results for your users a rare, sporadic occurence, as opposed to engineering reliable moments of surprise and delight.
+As soon as you scale or aim higher, the uncertainty about the performance of your pipeline makes improving it impossible. It makes incredible results for your users a rare, sporadic occurence, as opposed to engineering reliable moments of surprise and delight.
 
-And it really, really is trivial to get started. Pick the things you vibe-test on. Make it formal. Write up a prompt that gets you >=50%. You then have something to improve, which is much, much, much better than nothing, and the first path towards **reliable**, incredible AI products that are incredibly hard to replicate. [^3]
+And it really, really is trivial to get started. Pick the things you vibe-test on. Make it formal. Write up a prompt that gets you >=50%. You then have something to improve, which is much, much, much better than nothing, and the first path towards **reliable**, incredible AI products that are incredibly hard to replicate.
 
-## An Engine of Discovery
+## The Highest-Leverage Move
 
 The AI companies that create incredible products will be those who reliably define, measure, and optimize towards excellence.
 
@@ -117,8 +123,6 @@ I hope this is obvious. The best teams do this already. They've always done this
 
 AI engineering is… normal engineering, just with less reliable systems we're working with. But making them reliable is an engineering challenge that unlocks a lot of the benefits of AI that we've been promised and have had hyped up but haven't seen.
 
-This is a tricky, hard problem that is incredibly rewarding to make progress on and do right. And it's really simple to start :)
+This is a tricky, hard problem that is incredibly rewarding to make progress on and do right. Starting is deceptively easy. And it's really simple to start :)
 
-#### Some Examples
-
-openai, anthropic (constitiutional AI), midjourney (their moat is literally the taste of their platform it is clearly very difficult to make a better midjourney)
+The most defensible moat in AI is knowing how to measure and improve what matters most—because the path to superhuman outcomes always runs straight through superhuman evaluation.
